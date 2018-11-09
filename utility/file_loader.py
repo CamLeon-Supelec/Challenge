@@ -1,4 +1,8 @@
-from constants import *
+###################################
+#####LAST MODIFIED BY MATTHIEU#####
+###################################
+
+from utility.constants import *
 from os import listdir
 from os.path import isfile, join
 
