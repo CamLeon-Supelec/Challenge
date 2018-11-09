@@ -7,7 +7,7 @@ def file_loader():
                            (isfile(join(VALIDATION_DIR, f)) and f[-23:] == 'behavior_sequence.txt')]
     list_process_files = [f for f in listdir(VALIDATION_DIR) if
                           (isfile(join(VALIDATION_DIR, f)) and f[-14:] == 'generation.txt')]
-    return (list_sequence_files, list_process_files)
+    return list_sequence_files, list_process_files
 
 
 def parse_processes(process_file):
