@@ -9,17 +9,20 @@ from os.path import isfile, join
 
 def file_loader():
     """""
-    Returns 3 lists :
-        list_sequence_files is the list of sequence_filenames
-        list_process_files is the list of processes_filenames
-        file_labels is a list of bools where file_labels[i] == 1 if the ith file is a malware
+    Returns a list of triples :
+        triple[0] = sequence_file_name for the ith software
+        triple[1] = process_file_name for the ith software
+        triple[2] = label of the ith file 
     """""
     list_sequence_files = [f for f in listdir(TRAINING_DIR) if
                            (isfile(join(TRAINING_DIR, f)) and f[-23:] == 'behavior_sequence.txt')]
     list_process_files = [f for f in listdir(TRAINING_DIR) if
                           (isfile(join(TRAINING_DIR, f)) and f[-14:] == 'generation.txt')]
     file_labels = parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")
-    return list_sequence_files, list_process_files, file_labels
+    results = [(0,0,0)]* len(list_sequence_files)
+    for i in range(len(list_sequence_files)) :
+        results[i] = [(list_sequence_files[i], list_process_files[i], file_labels[i])]
+    return results
 
 def parse_label(label_file) :
     with open(label_file) as infile:
