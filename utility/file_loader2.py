@@ -27,12 +27,8 @@ def file_loader(n):
     #list_process_files.sort(key=lambda a : a[0])
     file_labels = parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")
     results = []
-    a = n
     for i in range(len(list_sequence_files)):
-        if (a > 1 or a == 0):
-            results.append((TRAINING_DIR+'/'+list_sequence_files[i][1], TRAINING_DIR+'/'+list_process_files[i][1], file_labels[i]))
-        if a > 1 :
-            a -= 1
+        results.append((list_sequence_files[i], list_process_files[i], file_labels[i]))
     return results
 
 def parse_label(label_file):
@@ -55,5 +51,5 @@ def parse_sequences(sequence_file):
     with open(sequence_file) as infile:
         sequences_triplets = []
         for line in infile:
-            sequences_triplets += [line.split()]
+            sequences_triplets += [[line.split()]]
         return sequences_triplets
