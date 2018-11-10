@@ -11,7 +11,7 @@ def tree_node_number(tree):
     return tree(number_of_nodes)
 
 
-def tree_leaf_number(tree):
+ tree_leaf_number(tree):
     """
     :param  tree: tree
     :return: the numbre of nodes of the tree
@@ -29,7 +29,7 @@ def tree_max_children_number(tree):
     max_number_of_children = 1
     for node in tree.nodes() :
         number_of_children = node.degree()
-        if number_of_children > max_number_of_children
+        if number_of_children > max_number_of_children:
             max_number_of_children = number_of_children
     return (max_number_of_children)
 
