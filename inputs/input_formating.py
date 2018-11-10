@@ -42,14 +42,13 @@ def tree_max_children_number(tree):
             max_number_of_children = number_of_children
     return max_number_of_children
 
-def tree_max_depth(tree):
+def tree_max_depth(tree, source):
     """
     :param  tree: tree
     :return: the maximum number of children for a node
     """
     max_depth = 1
-    #[tree_root_node] = [x for x in tree.nodes() if tree.in_degree(x)==0]
-    oriented_tree = nx.bfs_tree(tree)
+    oriented_tree = nx.bfs_tree(tree, source)
     last_element = [x for x in oriented_tree.nodes()][-1]
 
     for predecessor in tree.predecessors_iter(last_element) :
