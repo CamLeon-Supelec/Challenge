@@ -5,7 +5,7 @@ def tree_node_number(tree):
     :param  tree: tree
     :return: the numbre of nodes of the tree
     """
-    if not(is_arborescence(tree))
+    if not(is_arborescence(tree)):
         raise ValueError('this should be an arborescence')
         #erreur
     return tree(number_of_nodes)
@@ -16,7 +16,7 @@ def tree_leaf_number(tree):
     :param  tree: tree
     :return: the numbre of nodes of the tree
     """
-    if not(is_arborescence(tree))
+    if not(is_arborescence(tree)):
         raise ValueError('this should be an arborescence')
         #erreur
     return tree(size)
@@ -33,14 +33,14 @@ def tree_max_children_number(tree):
             max_number_of_children = number_of_children
     return (max_number_of_children)
 
-def tree_max_depth(tree)
+def tree_max_depth(tree):
     """
     :param  tree: tree
     :return: the maximum number of children for a node
     """
 
 
-def api_calls_proximity_matrix(graph)
+def api_calls_proximity_matrix(graph):
     """
     :param  graph: graph
     :return: a matrix for api proximity
@@ -51,7 +51,7 @@ def api_calls_proximity_matrix(graph)
     
     #matrice  de lien (vaut le nombre de fois où il a été appelé par l'API : pauvre, car ne traduit pas si il est appelé en tant que petit fils) 
     romain_matrix = np.zeros((number_of_api,number_of_api)
-    for node in tree.nodes() :
+    for node in tree.nodes():
         (predecessor_rip,predecessor_api) = graph.predecessors(node)[]        
         (current_rip,current_api) = node
         romain_matrix[predecessor_api,current_api]+=1
