@@ -1,5 +1,7 @@
 from inputs.input_formating import *
 
+
+
 def forest_input(process_tree, source, behavior_sequence_forest):
     """
     :param  : tree, list of graphs
@@ -120,9 +122,9 @@ def forest_api_frequency(behavior_sequence_forest):
 
 def forest_romain_matrix(behavior_sequence_forest) : 
     
-    maxi = np.zeros((3561,3561))
-    mini = np.Infinity((3561,3561))
-    mean = np.zeros((3561,3561))
+    maxi = np.zeros((3561, 3561))
+    mini = np.full((3561, 3561), np.inf)
+    mean = np.zeros((3561, 3561))
 
     for graph in behavior_sequence_forest :
         romain_matrix= generate_api_calls_proximity_matrix(graph)
