@@ -82,6 +82,8 @@ def generate_api_calls_proximity_matrix(graph):
     for node in graph.nodes():
         (predecessor_rip,predecessor_api) = graph.predecessors(node)        
         (current_rip,current_api) = node
+        current_api = int(current_api[4:])
+        predecessor_api = int(predecessor_api[4:])
         romain_matrix[predecessor_api,current_api]+=1
 
     return romain_matrix
@@ -92,7 +94,7 @@ def rip_diversity(graph):
     :return: a float between 0 and 1. 1 is high diversity. Lower result means lower RIP diversity
     """
     set ={}
-    for {rip,api} in graph.nodes : 
+    for (rip,api) in graph.nodes : 
         set.add(rip)
     return len(set)/number_of_nodes(graph)
     
@@ -102,12 +104,21 @@ def api_diversity(graph):
     :return: tupple of (float in [0,1] for api diversity, number of different APIs)
     """
     set ={}
-    for {rip,api} in graph.nodes : 
+    for (rip,api) in graph.nodes : 
         set.add(api)
     return len(set)/number_of_nodes(graph),len(set)
     
 def rip_frequency(graph):
     """
     :param  graph: graph
-    :return: tupple of (float in [0,1] for api diversity, number of different APIs)
+    :return: vector of api frequency per api
     """
+    number_of_api = 3561
+    number_of_process = number_of_nodes(graph)
+    api_frequency_list = [0. for i in range(number_of_process)]
+    for (rip,api) in graph.nodes :
+        api = int(current_api[4:])
+        api_frequency_list[api]+=1
+    return(api_frequency_list/.number_of_process)
+
+
