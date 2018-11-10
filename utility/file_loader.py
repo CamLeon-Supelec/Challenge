@@ -63,8 +63,7 @@ def parse_processes(process_file):
         with open(process_file) as infile:
             processes_couples = []
             for line in infile:
-                line = line.rstrip()
-                processes_couples += [(line.split(' -> ')[0], line.split(' -> ')[1])]
+                processes_couples += [(line.rstrip().split(' -> ')[0], line.rstrip().split(' -> ')[1])]
             return processes_couples
 
 
@@ -73,7 +72,7 @@ def parse_sequences(sequence_file):
         sequences_triplets = []
         for line in infile:
             line = line.rstrip()
-            sequences_triplets += [line.split(',')]
+            sequences_triplets += [line.rstrip().split(',')]
         return sequences_triplets
 
 def charge(q, files, mini, maxi):
