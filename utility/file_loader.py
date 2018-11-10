@@ -71,5 +71,5 @@ def parse_sequences(sequence_file):
     with open(sequence_file) as infile:
         sequences_triplets = []
         for line in infile:
-            sequences_triplets += [line.split()]
+            sequences_triplets += [line.split(',')]
         return sequences_triplets
