@@ -44,6 +44,8 @@ def data_loader(start=0, end=2000):
         list_sequence_files.append(f"{TRAINING_DIR}/training_{si}_behavior_sequence.txt")
         list_process_files.append(f"{TRAINING_DIR}/training_{si}_process_generation.txt")
 
+    return list_process_files, list_sequence_files
+
 
 def labels_loader(start=0, end=2000):
     return parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAMES}")
