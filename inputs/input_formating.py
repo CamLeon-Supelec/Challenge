@@ -64,13 +64,19 @@ def graph_structure_stats(graph):
     '
     """
     list_of_length = []
-    for list in nx.strongly_connected_component_subgraphs(graph) :
+    for list in nx.strongly_connected_components_subgraphs(graph) :
         list_of_length += [len(list)]
-    return([len(list_of_length),max(list_of_length), sum(list_of_length)/len(list_of_length), median(list_of_length)])
+
+    if len(list_of_length) != 0
+        mean = sum(list_of_length)/len(list_of_length)
+        median= median(list_of_length)
+    else 
+        mean=0
+        median=0
+    return([len(list_of_length),max(list_of_length), mean, median)
 
 
 def generate_api_calls_proximity_matrix(graph):
-    # FIXME
     """
     :param  graph: graph
     :return: a matrix for api proximity
@@ -82,11 +88,12 @@ def generate_api_calls_proximity_matrix(graph):
     #matrice  de lien (vaut le nombre de fois où il a été appelé par l'API : pauvre, car ne traduit pas si il est appelé en tant que petit fils) 
     romain_matrix = np.zeros((number_of_api,number_of_api))
     for node in graph.nodes():
-        (predecessor_rip,predecessor_api) = graph.predecessors(node)        
-        (current_rip,current_api) = node
-        current_api = int(current_api[4:])
-        predecessor_api = int(predecessor_api[4:])
-        romain_matrix[predecessor_api,current_api]+=1
+        for node_succ in graph.successors(node):
+            (successor_rip,successor_api) = node_succ
+            (current_rip,current_api) = node
+            current_api = int(current_api[4:])
+            successor_api = int(successor_api[4:])
+            romain_matrix[current_api,successor_api]+=1
 
     return romain_matrix
 
@@ -95,33 +102,41 @@ def rip_diversity(graph):
     :param  graph: graph
     :return: a float between 0 and 1. 1 is high diversity. Lower result means lower RIP diversity
     """
-    set_apis = set()
-    for (rip, api) in graph.nodes :
-        set_apis.add(api)
-    return len(set_apis)/nx.number_of_nodes(graph)
+    number_of_api_calls = nx.number_of_nodes(graph)
+    if node_number !=0 :
+        set ={}
+        for (rip,api) in graph.nodes : 
+            set.add(rip)
+        return len(set)/number_of_api_calls
+    else return 0
     
 def api_diversity(graph):
     """
     :param  graph: graph
     :return: tupple of (float in [0,1] for api diversity, number of different APIs)
     """
-    set_apis = set()
-    for (rip, api) in graph.nodes :
-        set_apis.add(api)
-    return len(set_apis)/nx.number_of_nodes(graph), len(set)
+    number_of_api_calls = nx.number_of_nodes(graph)
+    if node_number !=0 :
+        set ={}
+        for (rip,api) in graph.nodes : 
+            set.add(api)
+        return len(set)/number_of_api_calls,len(set)
+    else return 0
 
+    
 def rip_frequency(graph):
     """
     :param  graph: graph
     :return: vector of api frequency per api
     """
     number_of_api = 3561
-    number_of_process = nx.number_of_nodes(graph)
-    api_frequency_list = [0 for i in range(number_of_api)]
-    for (rip,api) in graph.nodes:
-        api = int(api[4:])
-        # INDEX SUR UN FLOAT !
-        api_frequency_list[api] += 1
-    return(np.array(api_frequency_list)/number_of_process)
+    number_of_api_calls = nx.number_of_nodes(graph)
+    if number_of_api_calls != 0 :
+        api_frequency_list = [0. for i in range(number_of_api)]
+        for (rip,api) in graph.nodes :
+            api = float(api[4:])
+            api_frequency_list[api]+=1
+        return(api_frequency_list/number_of_api_calls)
+    else return 0
 
 
