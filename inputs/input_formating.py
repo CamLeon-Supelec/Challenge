@@ -1,6 +1,7 @@
 import numpy as np
-from statistics import median
+from statistics import *
 import networkx as nx
+
 from bisect import insort
 
 def tree_node_number(tree):
@@ -41,18 +42,15 @@ def tree_max_children_number(tree):
             max_number_of_children = number_of_children
     return max_number_of_children
 
-def tree_max_depth(tree, source):
-    # FIXME
+def tree_max_depth(tree, source, depth=1):
     """
     :param  tree: tree
     :return: the maximum number of children for a node
     """
-    max_depth = 1
-    #[tree_root_node] = [x for x in tree.nodes() if tree.in_degree(x)==0]
-    oriented_tree = nx.bfs_tree(tree)
-    last_element = [x for x in oriented_tree.nodes()][-1]
-
-    return(max_depth)
+    successors = tree.successors(source)
+    if len(successors) == 0:
+        return depth
+    return np.max([tree_max_depth(tree, succ, depth+1) for succ in successors])
 
 def graph_structure_stats(graph):
     """
@@ -67,10 +65,10 @@ def graph_structure_stats(graph):
     if len(list_of_length) != 0:
         mean = sum(list_of_length)/len(list_of_length)
         med= median(list_of_length)
-    else :
+    else:
         mean=0
         med=0
-    return(len(list_of_length),max(list_of_length), mean, med)
+    return(len(list_of_length), max(list_of_length), mean, med)
 
 
 def generate_api_calls_proximity_matrix(graph):
@@ -101,7 +99,7 @@ def rip_diversity(graph):
     """
     number_of_api_calls = nx.number_of_nodes(graph)
     if number_of_api_calls !=0 :
-        set_rips =set()
+        set_rips = set()
         for (rip,api) in graph.nodes :
             set_rips.add(rip)
         return len(set_rips)/number_of_api_calls

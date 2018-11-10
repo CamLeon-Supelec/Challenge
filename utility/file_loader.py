@@ -48,7 +48,7 @@ def data_loader(start=0, end=2000):
 
 
 def labels_loader(start=0, end=2000):
-    return parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAMES}")
+    return parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAMES}")[start:end]
     
 
 def parse_label(label_file):
@@ -56,7 +56,7 @@ def parse_label(label_file):
         labels = []
         for line in infile:
             labels = list(line)
-        return labels
+        return [int(l) for l in labels]
 
 
 def parse_processes(process_file):
