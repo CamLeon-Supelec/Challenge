@@ -19,16 +19,16 @@ def file_loader():
     list_process_files = [f for f in listdir(TRAINING_DIR) if
                           (isfile(join(TRAINING_DIR, f)) and f[-14:] == 'generation.txt')]
     file_labels = parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")
-    results = [(0,0,0)]* len(list_sequence_files)
-    for i in range(len(list_sequence_files)) :
+    results = [(0, 0, 0)] * len(list_sequence_files)
+    for i in range(len(list_sequence_files)):
         results[i] = [(list_sequence_files[i], list_process_files[i], file_labels[i])]
     return results
 
-def parse_label(label_file) :
+def parse_label(label_file):
     with open(label_file) as infile:
         labels = []
-        for line in infile :
-            labels += [line]
+        for line in infile:
+            labels = list(line)
         return labels
 
 
