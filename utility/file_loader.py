@@ -27,8 +27,12 @@ def file_loader(n):
     #list_process_files.sort(key=lambda a : a[0])
     file_labels = parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")
     results = []
+    a = n
     for i in range(len(list_sequence_files)):
-        results.append((TRAINING_DIR+'/'+list_sequence_files[i][1], TRAINING_DIR+'/'+list_process_files[i][1], file_labels[i]))
+        if (a > 1):
+            results.append((TRAINING_DIR+'/'+list_sequence_files[i][1], TRAINING_DIR+'/'+list_process_files[i][1], file_labels[i]))
+        if a != 0 :
+            a -= 1
     return results
 
 def parse_label(label_file):
