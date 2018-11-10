@@ -13,7 +13,6 @@ def generate_subprocess_graph(links):
     """
     G = nx.DiGraph(Type="Subprocesses")
     G.add_edges_from(links)
-    print("Generate subprocesses graph of process " + links[0][1] + " -- Number of links : " + len(links))
     return G
 
 def generate_subprocess_tre(links):
