@@ -133,8 +133,8 @@ def forest_romain_matrix(behavior_sequence_forest) :
         mean= np.add(mean,romain_matrix)
     
     process_number = len(behavior_sequence_forest)
-    if process_number != 0 :
+    if process_number != 0:
         mean / process_number
     else : 
-        mean = np.zeros((3561,3561))
-    return np.concatenate((maxi, mini, mean))
+        mean = np.zeros((3561, 3561))
+    return maxi, mini, mean
