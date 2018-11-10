@@ -1,4 +1,5 @@
 import numpy as np
+from statistics import median
 
 def tree_node_number(tree):
     """
@@ -10,6 +11,12 @@ def tree_node_number(tree):
         #erreur
     return tree.number_of_nodes()
 
+def graph_node_number(graph):
+    """
+    :param  graph: graph
+    :return: the numbre of nodes of the graph
+    """
+    return graph.number_of_nodes()
 
 def tree_leaf_number(tree):
     """
@@ -47,6 +54,17 @@ def tree_max_depth(tree):
         max_depth+=1
 
     return(max_depth)
+
+def graph_structure_stats(graph):
+    """
+    :param  graph: graph
+    :return: stats on strongly connected components [number, max_length, mean_length, median_length]
+    '
+    """
+    list_of_length = []
+    for list in strongly_connected_components(graph) : 
+        list_of_length += [len(list)]
+    return([len(list_of_length),max(list_of_length), sum(list_of_length)/len(list_of_length), median(list_of_length))
 
 
 def generate_api_calls_proximity_matrix(graph):
