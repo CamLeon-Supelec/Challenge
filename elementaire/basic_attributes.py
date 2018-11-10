@@ -8,7 +8,7 @@ def parse_elementary_attributes(records):
     processes = []
     
     for record in records:
-        process = records[0]
+        process = record[0]
         if not process in processes:
             processes.append(process)
 
