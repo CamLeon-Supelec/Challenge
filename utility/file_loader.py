@@ -7,7 +7,7 @@ from os import listdir
 from os.path import isfile, join
 
 
-def file_loader():
+def file_loader(n_first=0):
     """""
     Returns a list of triples :
         triple[0] = sequence_file_name for the ith software
@@ -32,7 +32,7 @@ def parse_label(label_file):
         labels = []
         for line in infile:
             labels = list(line)
-        return labels
+       return labels
 
 
 def parse_processes(process_file):
@@ -47,5 +47,5 @@ def parse_sequences(sequence_file):
     with open(sequence_file) as infile:
         sequences_triplets = []
         for line in infile:
-            sequences_triplets += [[line.split()]]
+           sequences_triplets += [(line.split(',')[0], line.split(',')[1], line.split(',')[2])]
         return sequences_triplets

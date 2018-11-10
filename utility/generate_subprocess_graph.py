@@ -16,6 +16,17 @@ def generate_subprocess_graph(links):
     print("Generate subprocesses graph of process " + links[0][1] + " -- Number of links : " + len(links))
     return G
 
+def generate_subprocess_tre(links):
+    """
+    :param  links: list of childhood tuples (parent -> child)
+    :return: the tree of subprocesses
+    """
+    G = nx.DiGraph(Type="Subprocesses")
+    G.add_edges_from(links)
+    print("Generate subprocesses graph of process " + links[0][1] + " -- Number of links : " + len(links))
+    return G, links[0][0] # return parent with graph
+
+
 def generate_RIP_behavior_graph(records):
     """
     :param records:list of tuples (process, RIP, API_called)
