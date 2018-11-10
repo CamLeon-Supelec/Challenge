@@ -46,7 +46,8 @@ def data_loader(start=0, end=2000):
         list_sequence_files.append(f"{TRAINING_DIR}/training_{padding}_behavior_sequence.txt")
         list_process_files.append(f"{TRAINING_DIR}/training_{padding}_process_generation.txt")
 
-    return list_process_files, list_sequence_files
+    #return list_process_files, list_sequence_files
+    return [(list_process_files[i], list_sequence_files[i]) for i in range(len(list_process_files))]
 
 
 def labels_loader(start=0, end=2000):
