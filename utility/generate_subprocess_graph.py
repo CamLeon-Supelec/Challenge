@@ -108,6 +108,5 @@ def generate_API_behavior_graph(records):
         # Generate the tuple (graph, LIC) associated to subprocess
         forest_and_LIC[subprocess] = (process_graph,i)
 
-    #TODO eliminate RIPs from tuples (RIP, API_call)
     return [graph_and_LIC[0] for graph_and_LIC in forest_and_LIC]
 
