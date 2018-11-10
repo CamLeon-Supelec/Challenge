@@ -14,5 +14,5 @@ def final_function(data_i) :
 def return_matrix(data_i):
     sequences = parse_sequences(data_i[1])
     forest = generate_API_behavior_graph(sequences)
-    matrix = forest_romain_matrix(forest)
-    
+    matrices = forest_romain_matrix(forest)
+    return matrices
