@@ -1,3 +1,5 @@
+from inputs.input_formating import *
+
 def forest_input(process_tree,behavior_sequence_forest)
     """
     :param  : tree, list of graphs
@@ -18,25 +20,25 @@ def forest_input(process_tree,behavior_sequence_forest)
 
         x=graph_node_number(graph)
         k=0
-        if max[k] < x
+        if max[k] < x:
             max[k] = x
-        if min[k] > x
+        if min[k] > x:
             min[k] = x
         mean[k]+= x
 
         x=rip_diversity(graph)
         k=1
-        if max[k] < x
+        if max[k] < x:
             max[k] = x
-        if min[k] > x
+        if min[k] > x:
             min[k] = x
         mean[k]+= x
         
         x=api_diversity(graph)
         k=2
-        if max[k] < x
+        if max[k] < x:
             max[k] = x
-        if min[k] > x
+        if min[k] > x:
             min[k] = x
         mean[k]+= x
 
@@ -44,33 +46,33 @@ def forest_input(process_tree,behavior_sequence_forest)
 
         x=y[0]
         k=3
-        if max[k] < x
+        if max[k] < x:
             max[k] = x
-        if min[k] > x
+        if min[k] > x:
             min[k] = x
         mean[k]+= x
 
         x=y[1]
         k=4
-        if max[k] < x
+        if max[k] < x:
             max[k] = x
-        if min[k] > x
+        if min[k] > x:
             min[k] = x
         mean[k]+= x
 
         x=y[2]
         k=5
-        if max[k] < x
+        if max[k] < x:
             max[k] = x
-        if min[k] > x
+        if min[k] > x:
             min[k] = x
         mean[k]+= x
 
         x=y[3]
         k=6
-        if max[k] < x
+        if max[k] < x:
             max[k] = x
-        if min[k] > x
+        if min[k] > x:
             min[k] = x
         mean[k]+= x
 
@@ -92,10 +94,11 @@ def forest_api_frequency(behavior_sequence_forest)
 
     for graph in behavior_sequence_forest :
         x = api_frequency(graph)
-        for k in vector_size
-            if min_vector[k] < x
+        mean = np.zeros(vector_size)
+        for k in vector_size:
+            if min_vector[k] < x:
                 max[k] = x
-            if min[k] > x
+            if min[k] > x:
                 min[k] = x
             mean[k]+= x
     
@@ -112,4 +115,4 @@ def forest_api_frequency(behavior_sequence_forest)
 def forest_romain_matrix(behavior_sequence_forest)
     
     for graph in behavior_sequence_forest :
-    #generate_api_calls_proximity_matrix :  matrix of size 3500x3500
+        # generate_api_calls_proximity_matrix :  matrix of size 3500x3500
