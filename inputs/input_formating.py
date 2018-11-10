@@ -11,14 +11,14 @@ def tree_node_number(tree):
     if not(nx.is_arborescence(tree)):
         raise ValueError('this should be an arborescence')
         #erreur
-    return tree.number_of_nodes()
+    return nx.number_of_nodes(tree)
 
 def graph_node_number(graph):
     """
     :param  graph: graph
     :return: the numbre of nodes of the graph
     """
-    return graph.number_of_nodes()
+    return nx.number_of_nodes(graph)
 
 def tree_leaf_number(tree):
     """
@@ -42,7 +42,7 @@ def tree_max_children_number(tree):
             max_number_of_children = number_of_children
     return max_number_of_children
 
-def tree_max_depth(tree):
+def tree_max_depth(tree, source):
     """
     :param  tree: tree
     :return: the maximum number of children for a node
@@ -67,13 +67,13 @@ def graph_structure_stats(graph):
     for list in nx.strongly_connected_components_subgraphs(graph) :
         list_of_length += [len(list)]
 
-    if len(list_of_length) != 0
+    if len(list_of_length) != 0:
         mean = sum(list_of_length)/len(list_of_length)
-        median= median(list_of_length)
-    else 
+        med = median(list_of_length)
+    else :
         mean=0
-        median=0
-    return([len(list_of_length),max(list_of_length), mean, median)
+        med=0
+    return(len(list_of_length),max(list_of_length), mean, med)
 
 
 def generate_api_calls_proximity_matrix(graph):
@@ -103,12 +103,13 @@ def rip_diversity(graph):
     :return: a float between 0 and 1. 1 is high diversity. Lower result means lower RIP diversity
     """
     number_of_api_calls = nx.number_of_nodes(graph)
-    if node_number !=0 :
-        set ={}
-        for (rip,api) in graph.nodes : 
-            set.add(rip)
-        return len(set)/number_of_api_calls
-    else return 0
+    if number_of_api_calls !=0 :
+        set_rips =set()
+        for (rip,api) in graph.nodes :
+            set_rips.add(rip)
+        return len(set_rips)/number_of_api_calls
+    else :
+        return 0
     
 def api_diversity(graph):
     """
@@ -116,12 +117,13 @@ def api_diversity(graph):
     :return: tupple of (float in [0,1] for api diversity, number of different APIs)
     """
     number_of_api_calls = nx.number_of_nodes(graph)
-    if node_number !=0 :
-        set ={}
-        for (rip,api) in graph.nodes : 
-            set.add(api)
-        return len(set)/number_of_api_calls,len(set)
-    else return 0
+    if number_of_api_calls !=0 :
+        set_apis =set()
+        for (rip,api) in graph.nodes :
+            set_apis.add(api)
+        return len(set_apis)/number_of_api_calls,len(set_apis)
+    else :
+        return 0
 
     
 def api_frequency(graph):
@@ -137,6 +139,7 @@ def api_frequency(graph):
             api = int(api[4:])
             api_frequency_list[api]+=1
         return(np.array(api_frequency_list)/number_of_api_calls)
-    else return np.array(api_frequency_list)
+    else :
+        return np.array(api_frequency_list)
 
 
