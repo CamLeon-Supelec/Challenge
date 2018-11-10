@@ -56,7 +56,7 @@ def parse_label(label_file):
         labels = []
         for line in infile:
             labels = list(line)
-        return int(labels)
+        return [int(l) for l in labels]
 
 
 def parse_processes(process_file):
