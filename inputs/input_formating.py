@@ -67,7 +67,7 @@ def graph_structure_stats(graph):
     for list in nx.strongly_connected_components_subgraphs(graph) :
         list_of_length += [len(list)]
 
-    if len(list_of_length) != 0 :
+    if len(list_of_length) != 0:
         mean = sum(list_of_length)/len(list_of_length)
         med = median(list_of_length)
     else :
