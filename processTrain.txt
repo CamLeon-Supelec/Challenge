@@ -1,0 +1,1 @@
+stub.exe_1291b000 -> sample.exe_ae07000
