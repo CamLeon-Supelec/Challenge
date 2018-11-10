@@ -34,7 +34,7 @@ def forest_input(process_tree, source,behavior_sequence_forest):
             mini[k] = x
         mean[k]+= x
         
-        x=api_diversity(graph)
+        x=api_diversity(graph)[0]
         k=2
         if maxi[k] < x:
             maxi[k] = x

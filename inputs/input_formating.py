@@ -121,9 +121,9 @@ def api_diversity(graph):
         set_apis =set()
         for (rip,api) in graph.nodes :
             set_apis.add(api)
-        return len(set_apis)/number_of_api_calls,len(set_apis)
+        return len(set_apis)/number_of_api_calls, len(set_apis)
     else :
-        return 0
+        return 0, 0
 
     
 def api_frequency(graph):
