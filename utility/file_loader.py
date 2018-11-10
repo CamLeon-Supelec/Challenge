@@ -29,9 +29,9 @@ def file_loader(n):
     results = []
     a = n
     for i in range(len(list_sequence_files)):
-        if (a > 1):
+        if (a > 1 or a == 0):
             results.append((TRAINING_DIR+'/'+list_sequence_files[i][1], TRAINING_DIR+'/'+list_process_files[i][1], file_labels[i]))
-        if a != 0 :
+        if a > 1 :
             a -= 1
     return results
 
