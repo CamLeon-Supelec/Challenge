@@ -82,7 +82,7 @@ def generate_API_behavior_graph(records):
     for i, record in enumerate(records):
         subprocess = record[0]
         RIP = record[1]
-        API_call = record[2]
+        API = record[2]
         
         if subprocess in forest_and_LIC.keys():
             # This process had been seen before
@@ -96,7 +96,7 @@ def generate_API_behavior_graph(records):
 
             if process_graph.has_edge((lastRIP, lastAPI) , (RIP, API)):
                 # The edge already exist, its weight is incremented
-                process_graph[(lastRIP, lastAPI)][(RIP, API_Call)]['weight'] += 1
+                process_graph[(lastRIP, lastAPI)][(RIP, API)]['weight'] += 1
             else:
                 # The edge is created
                 process_graph.add_edge((lastRIP, lastAPI), (RIP, API), weight=1)
