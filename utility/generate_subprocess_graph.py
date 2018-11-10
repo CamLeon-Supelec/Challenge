@@ -73,9 +73,9 @@ def generate_RIP_behavior_graph(records):
             process_graph.add_node(RIP, API_calls=[API_call])
 
         # Generate the tuple (graph, LIC) associated to subprocess
-        forest_and_LIC[subprocess] = (process_graph,i)
+        forest_and_LIC[subprocess] = (process_graph, i)
 
-    return [graph_and_LIC[0] for graph_and_LIC in forest_and_LIC]
+    return [forest_and_LIC[subprocess] for subprocess in forest_and_LIC.keys()]
 
 def generate_API_behavior_graph(records):
     """
