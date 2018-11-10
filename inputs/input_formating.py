@@ -10,15 +10,14 @@ def tree_node_number(tree):
     """
     if not(nx.is_arborescence(tree)):
         raise ValueError('this should be an arborescence')
-        #erreur
-    return tree.number_of_nodes()
+    return nx.number_of_nodes(tree)
 
 def graph_node_number(graph):
     """
     :param  graph: graph
     :return: the numbre of nodes of the graph
     """
-    return graph.number_of_nodes()
+    return nx.number_of_nodes(graph)
 
 def tree_leaf_number(tree):
     """
@@ -36,8 +35,8 @@ def tree_max_children_number(tree):
     :return: the maximum number of children for a node
     """
     max_number_of_children = 1
-    for node in tree.nodes() :
-        number_of_children = node.degree()
+    for node in tree.nodes():
+        number_of_children = nx.degree(tree, node)
         if number_of_children > max_number_of_children:
             max_number_of_children = number_of_children
     return max_number_of_children
