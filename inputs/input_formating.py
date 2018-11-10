@@ -117,8 +117,8 @@ def rip_frequency(graph):
     number_of_process = number_of_nodes(graph)
     api_frequency_list = [0. for i in range(number_of_process)]
     for (rip,api) in graph.nodes :
-        api = int(current_api[4:])
+        api = float(current_api[4:])
         api_frequency_list[api]+=1
-    return(api_frequency_list/.number_of_process)
+    return(api_frequency_list/number_of_process)
 
 
