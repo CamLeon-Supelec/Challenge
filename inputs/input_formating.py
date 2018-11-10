@@ -95,20 +95,20 @@ def rip_diversity(graph):
     :param  graph: graph
     :return: a float between 0 and 1. 1 is high diversity. Lower result means lower RIP diversity
     """
-    set ={}
+    set_apis = set()
     for (rip, api) in graph.nodes :
-        set += rip
-    return len(set)/nx.number_of_nodes(graph)
+        set_apis.add(api)
+    return len(set_apis)/nx.number_of_nodes(graph)
     
 def api_diversity(graph):
     """
     :param  graph: graph
     :return: tupple of (float in [0,1] for api diversity, number of different APIs)
     """
-    set ={}
+    set_apis = set()
     for (rip, api) in graph.nodes :
-        set += api
-    return len(set)/nx.number_of_nodes(graph),len(set)
+        set_apis.add(api)
+    return len(set_apis)/nx.number_of_nodes(graph), len(set)
 
 def rip_frequency(graph):
     """
@@ -122,6 +122,6 @@ def rip_frequency(graph):
         api = int(api[4:])
         # INDEX SUR UN FLOAT !
         api_frequency_list[api] += 1
-    return(api_frequency_list/number_of_process)
+    return(np.array(api_frequency_list)/number_of_process)
 
 
