@@ -3,12 +3,12 @@ from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt
 
-from utility.file_loader import parse_label
+from utility.file_loader import *
 from utility.constants import *
 from inputs.input_formating import api_calls_proximity_matrix
+from elementaire.basic_attributes import parse_elementary_attributes
 
 model = keras.Sequential([
-    keras.layers.Flatten(input_shape=(3561, 3561)),
     keras.layers.Dense(128, activation=tf.nn.relu),
     keras.layers.Dense(2, activation=tf.nn.softmax)
 ])
@@ -16,7 +16,11 @@ model = keras.Sequential([
 model.compile(optimizer=tf.train.AdamOptimizer(),
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
-matrix = api_calls_proximity_matrix()
+
+files = file_loader()
+for file in files:
+    records = parse_sequences(file[0])
+    data = parse_elementary_attributes(records)
 labels = parse_label(LABEL_FILE_NAME)
 
-model.fit(matrix, labels, 10)
+model.fit(data, labels, 10)
