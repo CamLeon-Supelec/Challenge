@@ -16,6 +16,17 @@ def generate_subprocess_graph(links):
     print("Generate subprocesses graph of process " + links[0][1] + " -- Number of links : " + len(links))
     return G
 
+def generate_subprocess_tre(links):
+    """
+    :param  links: list of childhood tuples (parent -> child)
+    :return: the tree of subprocesses
+    """
+    G = nx.DiGraph(Type="Subprocesses")
+    G.add_edges_from(links)
+    print("Generate subprocesses graph of process " + links[0][1] + " -- Number of links : " + len(links))
+    return G, links[0][0] # return parent with graph
+
+
 def generate_RIP_behavior_graph(records):
     """
     :param records:list of tuples (process, RIP, API_called)
@@ -108,6 +119,5 @@ def generate_API_behavior_graph(records):
         # Generate the tuple (graph, LIC) associated to subprocess
         forest_and_LIC[subprocess] = (process_graph,i)
 
-    #TODO eliminate RIPs from tuples (RIP, API_call)
     return [graph_and_LIC[0] for graph_and_LIC in forest_and_LIC]
 
