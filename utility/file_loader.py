@@ -63,6 +63,7 @@ def parse_processes(process_file):
         with open(process_file) as infile:
             processes_couples = []
             for line in infile:
+                line = line.replace("\n", "")
                 processes_couples += [(line.split(' -> ')[0], line.split(' -> ')[1])]
             return processes_couples
 
@@ -71,6 +72,7 @@ def parse_sequences(sequence_file):
     with open(sequence_file) as infile:
         sequences_triplets = []
         for line in infile:
+            line = line.replace("\n", "")
             sequences_triplets += [line.split(',')]
         return sequences_triplets
 
