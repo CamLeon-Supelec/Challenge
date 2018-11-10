@@ -64,7 +64,7 @@ def graph_structure_stats(graph):
     list_of_length = []
     for list in strongly_connected_components(graph) : 
         list_of_length += [len(list)]
-    return([len(list_of_length),max(list_of_length), sum(list_of_length)/len(list_of_length), median(list_of_length))
+    return([len(list_of_length),max(list_of_length), sum(list_of_length)/len(list_of_length), median(list_of_length)])
 
 
 def generate_api_calls_proximity_matrix(graph):
