@@ -19,5 +19,5 @@ def parse_elementary_attributes(records):
     n_API_calls = len(API_calls)
     n_processes = len(processes)
 
-    return n_RIP, n_API_calls, n_processes
+    return [n_RIP, n_API_calls, n_processes]
 
