@@ -1,5 +1,6 @@
 import numpy as np
 from statistics import median
+from bisect import insort
 
 def tree_node_number(tree):
     """
@@ -84,5 +85,29 @@ def generate_api_calls_proximity_matrix(graph):
         romain_matrix[predecessor_api,current_api]+=1
 
     return romain_matrix
+
+def rip_diversity(graph):
+    """
+    :param  graph: graph
+    :return: a float between 0 and 1. 1 is high diversity. Lower result means lower RIP diversity
+    """
+    set ={}
+    for {rip,api} in graph.nodes : 
+        set.add(rip)
+    return len(set)/number_of_nodes(graph)
     
+def api_diversity(graph):
+    """
+    :param  graph: graph
+    :return: tupple of (float in [0,1] for api diversity, number of different APIs)
+    """
+    set ={}
+    for {rip,api} in graph.nodes : 
+        set.add(api)
+    return len(set)/number_of_nodes(graph),len(set)
     
+def rip_frequency(graph):
+    """
+    :param  graph: graph
+    :return: tupple of (float in [0,1] for api diversity, number of different APIs)
+    """
