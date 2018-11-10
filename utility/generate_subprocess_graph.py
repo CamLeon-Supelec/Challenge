@@ -34,7 +34,7 @@ def generate_behavior_graph(records):
         RIP = record[1]
         API_call = record[2]
         
-        if subprocess in forest.keys():
+        if subprocess in forest_and_LIC[subprocess][0].keys():
             # This process had been seen before
             process_graph, process_LIC = forest_and_LIC[subprocess]
             # Equivalent to :
@@ -45,7 +45,7 @@ def generate_behavior_graph(records):
 
             if process_graph.has_edge(lastRIP, RIP):
                 # The edge already exist, its weight is incremented
-                process_graph.[lastRIP][RIP]['weight'] += 1
+                process_graph[lastRIP][RIP]['weight'] += 1
             else:
                 # The edge is created
                 process_graph.add_edge(lastRIP, RIP, weight=1)
@@ -64,4 +64,4 @@ def generate_behavior_graph(records):
         # Generate the tuple (graph, LIC) associated to subprocess
         forest_and_LIC[subprocess] = (process_graph,i)
 
-    return forest
+    return [graphe_and_LIC[0] for graph_and_LIC in forest_and_LIC]
