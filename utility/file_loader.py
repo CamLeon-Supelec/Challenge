@@ -48,7 +48,7 @@ def data_loader(start=0, end=2000):
 
 
 def labels_loader(start=0, end=2000):
-    return parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAMES}")[start:end]
+    return parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")[start:end]
     
 
 def parse_label(label_file):
