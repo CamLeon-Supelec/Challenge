@@ -10,9 +10,9 @@ def forest_input(process_tree,behavior_sequence_forest)
     output+=[tree_max_depth(process_tree)]
 
     vector_size = 7
-    max = [-1]*vector_size
-    min = [99999]*vector_size
-    mean = [-1]*vector_size 
+    max = np.zeros(vector_size)
+    min = np.array([99999]*vector_size)
+    mean = np.zeros(vector_size)
 
     for graph in behavior_sequence_forest :
 
@@ -74,16 +74,39 @@ def forest_input(process_tree,behavior_sequence_forest)
             min[k] = x
         mean[k]+= x
 
-    mean = mean / len(behavior_sequence_forest)
+    process_number =len(behavior_sequence_forest)
+    if process_number != 0 :
+        mean = mean / process_number
+    else :
+        mean = [0]*vector_size
 
     output+=max+min+mean #concatenate lists
     
-
 def forest_api_frequency(behavior_sequence_forest)
     
-    for graph in behavior_sequence_forest :
+    vector_size = 3561
 
-    #api_frequency : vector of size 3500
+    max_vector = np.zeros(vector_size)
+    min_vector = np.array([99999]*vector_size)
+    mean_vector = np.zeros(vector_size)
+
+    for graph in behavior_sequence_forest :
+        x = api_frequency(graph)
+        for k in vector_size
+            if min_vector[k] < x
+                max[k] = x
+            if min[k] > x
+                min[k] = x
+            mean[k]+= x
+    
+    process_number = len(behavior_sequence_forest)
+    
+    if process_number != 0 :
+        for k in vector_size :
+            mean[k]= mean[k]/ process_number
+    else :
+        mean = [0]*vector_size
+
     
 
 def forest_romain_matrix(behavior_sequence_forest)
