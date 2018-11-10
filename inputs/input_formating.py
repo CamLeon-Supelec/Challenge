@@ -86,14 +86,14 @@ def generate_api_calls_proximity_matrix(graph):
     number_of_api = 3561
     
     #matrice  de lien (vaut le nombre de fois où il a été appelé par l'API : pauvre, car ne traduit pas si il est appelé en tant que petit fils) 
-    romain_matrix = np.zeros((number_of_api,number_of_api))
+    romain_matrix = np.zeros((number_of_api, number_of_api))
     for node in graph.nodes():
         for node_succ in graph.successors(node):
-            (successor_rip,successor_api) = node_succ
-            (current_rip,current_api) = node
+            (successor_rip, successor_api) = node_succ
+            (current_rip, current_api) = node
             current_api = int(current_api[4:])
             successor_api = int(successor_api[4:])
-            romain_matrix[current_api,successor_api]+=1
+            romain_matrix[current_api, successor_api] += 1
 
     return romain_matrix
 
@@ -134,9 +134,9 @@ def rip_frequency(graph):
     if number_of_api_calls != 0 :
         api_frequency_list = [0. for i in range(number_of_api)]
         for (rip,api) in graph.nodes :
-            api = float(api[4:])
+            api = int(api[4:])
             api_frequency_list[api]+=1
-        return(api_frequency_list/number_of_api_calls)
+        return(np.array(api_frequency_list)/number_of_api_calls)
     else return 0
 
 
