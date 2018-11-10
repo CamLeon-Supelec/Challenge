@@ -61,9 +61,9 @@ def generate_RIP_behavior_graph(records):
                 # The edge is created
                 process_graph.add_edge(lastRIP, RIP, weight=1)
             
-        # We want to add API_call in the list of API_calls associated to this RIP iff it is not in already
-        if not API_call in process_graph[RIP]['API_calls']:
-            process_graph[RIP]['API_calls'].append(API_call)
+            # We want to add API_call in the list of API_calls associated to this RIP iff it is not in already
+            if API_call not in process_graph[RIP]['API_calls']:
+                process_graph[RIP]['API_calls'].append(API_call)
 
         else:
             # This process had not been seen before
@@ -75,7 +75,7 @@ def generate_RIP_behavior_graph(records):
         # Generate the tuple (graph, LIC) associated to subprocess
         forest_and_LIC[subprocess] = (process_graph, i)
 
-    return [forest_and_LIC[subprocess] for subprocess in forest_and_LIC.keys()]
+    return [forest_and_LIC[subprocess][0] for subprocess in forest_and_LIC.keys()]
 
 def generate_API_behavior_graph(records):
     """
@@ -119,5 +119,5 @@ def generate_API_behavior_graph(records):
         # Generate the tuple (graph, LIC) associated to subprocess
         forest_and_LIC[subprocess] = (process_graph, i)
 
-    return [graph_and_LIC[0] for graph_and_LIC in forest_and_LIC]
+    return [forest_and_LIC[subprocess][0] for subprocess in forest_and_LIC.keys()]
 
