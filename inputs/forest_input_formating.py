@@ -101,8 +101,8 @@ def forest_api_frequency(behavior_sequence_forest):
     for graph in behavior_sequence_forest :
         x = api_frequency(graph)
         for k in range(vector_size):
-            if max_vector[k] < x:
-                max[k] = x
+            if max_vector[k] < x[k]:
+                max_vector[k] = x[k]
 
     return max_vector
     
