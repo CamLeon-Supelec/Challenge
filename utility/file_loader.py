@@ -5,7 +5,7 @@
 from utility.constants import *
 from os import listdir
 from os.path import isfile, join
-
+from elementaire.basic_attributes import parse_elementary_attributes
 
 def file_loader(n):
     """""
@@ -48,7 +48,7 @@ def data_loader(start=0, end=2000):
 
 
 def labels_loader(start=0, end=2000):
-    return parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAMES}")[start:end]
+    return parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")[start:end]
     
 
 def parse_label(label_file):
@@ -73,3 +73,16 @@ def parse_sequences(sequence_file):
         for line in infile:
             sequences_triplets += [line.split(',')]
         return sequences_triplets
+
+def charge(q, files, mini, maxi):
+    for i in range(mini, maxi):
+        q.put(parse_elementary_attributes(parse_sequences(files[1][i])))
+        if i%100 == 0:
+            print(i)
+    return q
+
+
+def charge2(file):
+    res = (parse_elementary_attributes(parse_sequences(file)))
+    print(file[-22:-14])
+    return(res)
