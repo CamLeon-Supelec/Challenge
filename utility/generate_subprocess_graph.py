@@ -56,10 +56,10 @@ def generate_RIP_behavior_graph(records):
 
         else:
             # This process had not been seen before
-            process_graph = nx.DiGraph('process'=subprocess)
+            process_graph = nx.DiGraph(process=subprocess)
             
             # We generate the node so that we can add the API_call associated to it
-            process_graph.add_node(RIP, 'API_calls'=[API_call])
+            process_graph.add_node(RIP, API_calls=[API_call])
 
         # Generate the tuple (graph, LIC) associated to subprocess
         forest_and_LIC[subprocess] = (process_graph,i)
@@ -103,10 +103,10 @@ def generate_API_behavior_graph(records):
             
         else:
             # This process had not been seen before
-            process_graph = nx.DiGraph('process'=subprocess)
+            process_graph = nx.DiGraph(process=subprocess)
 
         # Generate the tuple (graph, LIC) associated to subprocess
-        forest_and_LIC[subprocess] = (process_graph,i)
+        forest_and_LIC[subprocess] = (process_graph, i)
 
     return [graph_and_LIC[0] for graph_and_LIC in forest_and_LIC]
 
