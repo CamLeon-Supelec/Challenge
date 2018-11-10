@@ -37,7 +37,7 @@ def tree_max_children_number(tree):
     """
     max_number_of_children = 1
     for node in tree.nodes() :
-        number_of_children = node.degree()
+        number_of_children = tree.degree(node)
         if number_of_children > max_number_of_children:
             max_number_of_children = number_of_children
     return max_number_of_children
