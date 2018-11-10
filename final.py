@@ -14,7 +14,7 @@ def final_function(data_i) :
 def to_be_encoded(data_i):
     sequences = parse_sequences(data_i[1])
     forest = generate_API_behavior_graph(sequences)
-    vector = forest_romain_matrix(forest)
+    vector = forest_api_frequency(forest)
     return vector
 
 def return_matrix(data_i):
