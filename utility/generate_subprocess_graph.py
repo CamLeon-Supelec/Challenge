@@ -64,4 +64,4 @@ def generate_behavior_graph(records):
         # Generate the tuple (graph, LIC) associated to subprocess
         forest_and_LIC[subprocess] = (process_graph,i)
 
-    return [graphe_and_LIC[0] for graph_and_LIC in forest_and_LIC]
+    return [graph_and_LIC[0] for graph_and_LIC in forest_and_LIC]
