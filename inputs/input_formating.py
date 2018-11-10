@@ -72,7 +72,7 @@ def graph_structure_stats(graph):
     else:
         mean=0
         med=0
-    return([len(list_of_length), max(list_of_length), mean, med)
+    return(len(list_of_length), max(list_of_length), mean, med)
 
 
 def generate_api_calls_proximity_matrix(graph):
