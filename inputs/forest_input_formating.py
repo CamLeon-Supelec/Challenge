@@ -12,68 +12,68 @@ def forest_input(process_tree, source,behavior_sequence_forest):
    # output+=[tree_max_depth(process_tree, source)]
 
     vector_size = 7
-    max = np.zeros(vector_size)
-    min = np.array([99999]*vector_size)
+    maxi = np.zeros(vector_size)
+    mini = np.array([99999]*vector_size)
     mean = np.zeros(vector_size)
 
     for graph in behavior_sequence_forest :
 
         x=graph_node_number(graph)
         k=0
-        if max[k] < x:
-            max[k] = x
-        if min[k] > x:
-            min[k] = x
+        if maxi[k] < x:
+            maxi[k] = x
+        if mini[k] > x:
+            mini[k] = x
         mean[k]+= x
 
         x=rip_diversity(graph)
         k=1
-        if max[k] < x:
-            max[k] = x
-        if min[k] > x:
-            min[k] = x
+        if maxi[k] < x:
+            maxi[k] = x
+        if mini[k] > x:
+            mini[k] = x
         mean[k]+= x
         
         x=api_diversity(graph)
         k=2
-        if max[k] < x:
-            max[k] = x
-        if min[k] > x:
-            min[k] = x
+        if maxi[k] < x:
+            maxi[k] = x
+        if mini[k] > x:
+            mini[k] = x
         mean[k]+= x
 
         y=graph_structure_stats(graph)
 
         x=y[0]
         k=3
-        if max[k] < x:
-            max[k] = x
-        if min[k] > x:
-            min[k] = x
+        if maxi[k] < x:
+            maxi[k] = x
+        if mini[k] > x:
+            mini[k] = x
         mean[k]+= x
 
         x=y[1]
         k=4
-        if max[k] < x:
-            max[k] = x
-        if min[k] > x:
-            min[k] = x
+        if maxi[k] < x:
+            maxi[k] = x
+        if mini[k] > x:
+            mini[k] = x
         mean[k]+= x
 
         x=y[2]
         k=5
-        if max[k] < x:
-            max[k] = x
-        if min[k] > x:
-            min[k] = x
+        if maxi[k] < x:
+            maxi[k] = x
+        if mini[k] > x:
+            mini[k] = x
         mean[k]+= x
 
         x=y[3]
         k=6
-        if max[k] < x:
-            max[k] = x
-        if min[k] > x:
-            min[k] = x
+        if maxi[k] < x:
+            maxi[k] = x
+        if mini[k] > x:
+            mini[k] = x
         mean[k]+= x
 
     process_number =len(behavior_sequence_forest)
@@ -82,7 +82,7 @@ def forest_input(process_tree, source,behavior_sequence_forest):
     else :
         mean = [0]*vector_size
 
-    output = np.concatenate((output,max,min,mean)) #concatenate lists
+    output = np.concatenate((output,maxi,mini,mean)) #concatenate lists
 
     return output
     
