@@ -11,6 +11,12 @@ def final_function(data_i) :
     forest = generate_API_behavior_graph(sequences)
     return forest_input(tree, source, forest)
 
+def to_be_encoded(data_i):
+    sequences = parse_sequences(data_i[1])
+    forest = generate_API_behavior_graph(sequences)
+    vector = forest_romain_matrix(forest)
+    return vector
+
 def return_matrix(data_i):
     sequences = parse_sequences(data_i[1])
     forest = generate_API_behavior_graph(sequences)
