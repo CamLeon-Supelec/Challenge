@@ -8,9 +8,6 @@ def tree_node_number(tree):
     :param  tree: tree
     :return: the numbre of nodes of the tree
     """
-    if not(nx.is_arborescence(tree)):
-        raise ValueError('this should be an arborescence')
-        #erreur
     return nx.number_of_nodes(tree)
 
 def graph_node_number(graph):
@@ -70,10 +67,13 @@ def graph_structure_stats(graph):
     if len(list_of_length) != 0:
         mean = sum(list_of_length)/len(list_of_length)
         med = median(list_of_length)
+        maxi = max(list_of_length)
     else :
         mean=0
         med=0
-    return(len(list_of_length),max(list_of_length), mean, med)
+        maxi=0
+
+    return(len(list_of_length),maxi, mean, med)
 
 
 def generate_api_calls_proximity_matrix(graph):

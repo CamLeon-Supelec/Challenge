@@ -1,6 +1,6 @@
 from inputs.input_formating import *
 
-def forest_input(process_tree, source,behavior_sequence_forest):
+def forest_input(process_tree, source, behavior_sequence_forest):
     """
     :param  : tree, list of graphs
     :return: vector of size 4+3*7=25
