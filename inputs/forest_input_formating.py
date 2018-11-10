@@ -82,9 +82,13 @@ def forest_input(process_tree,behavior_sequence_forest):
     else :
         mean = [0]*vector_size
 
-    output+=max+min+mean #concatenate lists
+    output = np.concatenate(output,max,min,mean) #concatenate lists
     
-def forest_api_frequency(behavior_sequence_forest)
+def forest_api_frequency(behavior_sequence_forest):
+    """
+    :param  : list of graphs
+    :return: vector of size 3*3561=10500
+    """
     
     vector_size = 3561
 
@@ -94,11 +98,10 @@ def forest_api_frequency(behavior_sequence_forest)
 
     for graph in behavior_sequence_forest :
         x = api_frequency(graph)
-        mean = np.zeros(vector_size)
-        for k in vector_size:
+        for k in vector_size :
             if min_vector[k] < x:
                 max[k] = x
-            if min[k] > x:
+            if min[k] > x :
                 min[k] = x
             mean[k]+= x
     
@@ -110,9 +113,24 @@ def forest_api_frequency(behavior_sequence_forest)
     else :
         mean = [0]*vector_size
 
+    return np.concatenate(max_vector, min_vector, mean_vector) 
     
 
-def forest_romain_matrix(behavior_sequence_forest)
+def forest_romain_matrix(behavior_sequence_forest) : 
     
+    max = np.zeros((3561,3561))
+    min = np.Infinity((3561,3561))
+    mean = np.zeros((3561,3561))
+
     for graph in behavior_sequence_forest :
-        # generate_api_calls_proximity_matrix :  matrix of size 3500x3500
+        romain_matrix= generate_api_calls_proximity_matrix(graph)
+        max = np.maximum(max,romain_matrix) #matrix of size 3500x3500
+        min = np.minimum(min,romain_matrix)
+        mean= np.add(mean,romain_matrix)
+    
+    process_number = len(behavior_sequence_forest)
+    if process_number != 0 :
+        mean / process_number
+    else : 
+        mean = np.zeros((3561,3561))
+    return np.concatenate(max, min, mean)
