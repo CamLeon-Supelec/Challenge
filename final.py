@@ -10,3 +10,9 @@ def final_function(data_i) :
     tree, source = generate_subprocess_tre(processes)
     forest = generate_API_behavior_graph(sequences)
     return forest_input(tree, source, forest)
+
+def return_matrix(data_i):
+    sequences = parse_sequences(data_i[1])
+    forest = generate_API_behavior_graph(sequences)
+    matrix = forest_romain_matrix(forest)
+    
