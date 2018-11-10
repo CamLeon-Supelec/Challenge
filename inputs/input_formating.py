@@ -1,5 +1,6 @@
 import numpy as np
 from statistics import median
+import networkx as nx
 from bisect import insort
 
 def tree_node_number(tree):
@@ -7,7 +8,7 @@ def tree_node_number(tree):
     :param  tree: tree
     :return: the numbre of nodes of the tree
     """
-    if not(is_arborescence(tree)):
+    if not(nx.is_arborescence(tree)):
         raise ValueError('this should be an arborescence')
         #erreur
     return tree.number_of_nodes()
@@ -24,7 +25,7 @@ def tree_leaf_number(tree):
     :param  tree: tree
     :return: the numbre of nodes of the tree
     """
-    if not(is_arborescence(tree)):
+    if not(nx.is_arborescence(tree)):
         raise ValueError('this should be an arborescence')
         #erreur
     return(len([x for x in tree.nodes() if tree.out_degree(x)==0 and tree.in_degree(x)==1]))
@@ -63,7 +64,7 @@ def graph_structure_stats(graph):
     '
     """
     list_of_length = []
-    for list in strongly_connected_components(graph) : 
+    for list in nx.strongly_connected_subgraphs(graph) :
         list_of_length += [len(list)]
     return([len(list_of_length),max(list_of_length), sum(list_of_length)/len(list_of_length), median(list_of_length)])
 
@@ -96,7 +97,7 @@ def rip_diversity(graph):
     set ={}
     for (rip,api) in graph.nodes : 
         set.add(rip)
-    return len(set)/number_of_nodes(graph)
+    return len(set)/nx.number_of_nodes(graph)
     
 def api_diversity(graph):
     """
@@ -106,7 +107,7 @@ def api_diversity(graph):
     set ={}
     for (rip,api) in graph.nodes : 
         set.add(api)
-    return len(set)/number_of_nodes(graph),len(set)
+    return len(set)/nx.number_of_nodes(graph),len(set)
     
 def rip_frequency(graph):
     """
@@ -114,10 +115,10 @@ def rip_frequency(graph):
     :return: vector of api frequency per api
     """
     number_of_api = 3561
-    number_of_process = number_of_nodes(graph)
-    api_frequency_list = [0. for i in range(number_of_process)]
-    for (rip,api) in graph.nodes :
-        api = float(current_api[4:])
+    number_of_process = nx.number_of_nodes(graph)
+    api_frequency_list = [0. for i in range(number_of_api)]
+    for (rip, api) in graph.nodes :
+        api = float(api[4:])
         api_frequency_list[api]+=1
     return(api_frequency_list/number_of_process)
 
