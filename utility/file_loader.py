@@ -25,7 +25,7 @@ def file_loader(n_first=0):
                                (isfile(join(TRAINING_DIR, f)) and f[-23:] == 'behavior_sequence.txt')]
         list_process_files = [f for f in listdir(TRAINING_DIR)[:n_first] if
                               (isfile(join(TRAINING_DIR, f)) and f[-14:] == 'generation.txt')]
-        file_labels = parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")
+        file_labels = parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}", n_first)
     results = [(0, 0, 0)] * len(list_sequence_files)
     for i in range(len(list_sequence_files)):
         results[i] = [(list_sequence_files[i], list_process_files[i], file_labels[i])]
@@ -51,5 +51,5 @@ def parse_sequences(sequence_file):
     with open(sequence_file) as infile:
         sequences_triplets = []
         for line in infile:
-            sequences_triplets += [line.split(',')]
+            sequences_triplets += [(line.split(',')[0], line.split(',')[1], line.split(',')[2])]
         return sequences_triplets
