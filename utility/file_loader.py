@@ -28,7 +28,7 @@ def file_loader(n):
     file_labels = parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")
     results = []
     for i in range(len(list_sequence_files)):
-        results.append((list_sequence_files[i][1], list_process_files[i][1], file_labels[i]))
+        results.append((TRAINING_DIR+'/'+list_sequence_files[i][1], TRAINING_DIR+'/'+list_process_files[i][1], file_labels[i]))
     return results
 
 def parse_label(label_file):
