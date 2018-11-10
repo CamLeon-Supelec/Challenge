@@ -64,7 +64,7 @@ def graph_structure_stats(graph):
     '
     """
     list_of_length = []
-    for list in nx.strongly_connected_components_subgraphs(graph) :
+    for list in nx.strongly_connected_component_subgraphs(graph) :
         list_of_length += [len(list)]
 
     if len(list_of_length) != 0:
