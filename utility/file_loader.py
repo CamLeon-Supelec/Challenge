@@ -27,6 +27,20 @@ def file_loader(n_first=0):
         results.append((list_sequence_files[i], list_process_files[i], file_labels[i]))
     return results
 
+def data_loader(start=0, end=2000):
+    list_process_files = []
+    list_sequence_files = []
+    for i in range(start, end):
+        si = str(i)
+        padding = (6-len(si))*"0"+si
+        list_sequence_files.append(f"{TRAINING_DIR}/training_{si}_behavior_sequence.txt")
+        list_process_files.append(f"{TRAINING_DIR}/training_{si}_process_generation.txt")
+
+
+def labels_loader(start=0, end=2000):
+    return parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAMES}")
+    
+
 def parse_label(label_file):
     with open(label_file) as infile:
         labels = []
