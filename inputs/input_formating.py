@@ -52,7 +52,7 @@ def tree_max_depth(tree, source):
     last_element = [x for x in oriented_tree.nodes()][-1]
     
     elt = last_element
-    while elt.in_degree !=0 :
+    while tree.in_degree(elt) !=0 :
         elt = tree.predecessors_iter(elt)[0]
         max_depth+=1
     return(max_depth)
