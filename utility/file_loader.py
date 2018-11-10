@@ -6,6 +6,8 @@ from utility.constants import *
 from os import listdir
 from os.path import isfile, join
 from elementaire.basic_attributes import parse_elementary_attributes
+from utility.generate_subprocess_graph import generate_subprocess_tre, generate_API_behavior_graph
+from inputs.forest_input_formating import forest_input
 
 def file_loader(n):
     """""
@@ -87,3 +89,7 @@ def charge2(file):
     res = (parse_elementary_attributes(parse_sequences(file)))
     print(file[-22:-14])
     return(res)
+
+def load_giga(file):
+    tree, source = generate_subprocess_tre(parse_processes(file[0]))
+    return forest_input(tree, source, generate_API_behavior_graph(parse_sequences(file[1])))
