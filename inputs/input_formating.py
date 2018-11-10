@@ -5,7 +5,7 @@ def tree_node_number(tree):
     :param  tree: tree
     :return: the numbre of nodes of the tree
     """
-    if not(nx.is_arborescence(tree)):
+    if not(is_arborescence(tree)):
         raise ValueError('this should be an arborescence')
         #erreur
     return tree.number_of_nodes()
@@ -15,7 +15,10 @@ def tree_leaf_number(tree):
     """
     :param  tree: tree
     :return: the numbre of nodes of the tree
-    """    
+    """
+    if not(is_arborescence(tree)):
+        raise ValueError('this should be an arborescence')
+        #erreur
     return(len([x for x in tree.nodes() if tree.out_degree(x)==0 and tree.in_degree(x)==1]))
 
 def tree_max_children_number(tree):
@@ -26,9 +29,9 @@ def tree_max_children_number(tree):
     max_number_of_children = 1
     for node in tree.nodes() :
         number_of_children = node.degree()
-        if number_of_children > max_number_of_children :
+        if number_of_children > max_number_of_children:
             max_number_of_children = number_of_children
-    return (max_number_of_children)
+    return max_number_of_children
 
 def tree_max_depth(tree):
     """
@@ -62,7 +65,6 @@ def generate_api_calls_proximity_matrix(graph):
         (current_rip,current_api) = node
         romain_matrix[predecessor_api,current_api]+=1
 
-    return(romain_matrix)
-        
+    return romain_matrix
     
     
