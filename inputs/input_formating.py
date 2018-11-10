@@ -81,7 +81,7 @@ def generate_api_calls_proximity_matrix(graph):
     #matrice  de lien (vaut le nombre de fois où il a été appelé par l'API : pauvre, car ne traduit pas si il est appelé en tant que petit fils) 
     romain_matrix = np.zeros((number_of_api, number_of_api))
     for node in graph.nodes():
-        for node_succ in graph.successors(node)
+        for node_succ in graph.successors(node):
             (successor_rip, successor_api) = node_succ
             (current_rip, current_api) = node
             current_api = int(current_api[4:])
