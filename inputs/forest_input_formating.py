@@ -83,6 +83,8 @@ def forest_input(process_tree,behavior_sequence_forest):
         mean = [0]*vector_size
 
     output = np.concatenate(output,max,min,mean) #concatenate lists
+
+    return output
     
 def forest_api_frequency(behavior_sequence_forest):
     """
@@ -99,19 +101,19 @@ def forest_api_frequency(behavior_sequence_forest):
     for graph in behavior_sequence_forest :
         x = api_frequency(graph)
         for k in vector_size :
-            if min_vector[k] < x:
+            if max_vector[k] < x:
                 max[k] = x
-            if min[k] > x :
+            if min_vector[k] > x :
                 min[k] = x
-            mean[k]+= x
+            mean_vector[k]+= x
     
     process_number = len(behavior_sequence_forest)
     
     if process_number != 0 :
         for k in vector_size :
-            mean[k]= mean[k]/ process_number
+            mean_vector[k]= mean_vector[k]/ process_number
     else :
-        mean = [0]*vector_size
+        mean_vector = [0]*vector_size
 
     return np.concatenate(max_vector, min_vector, mean_vector) 
     
