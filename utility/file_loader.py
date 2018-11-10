@@ -14,21 +14,24 @@ def file_loader():
         triple[1] = process_file_name for the ith software
         triple[2] = label of the ith file 
     """""
-    list_sequence_files = [f for f in listdir(TRAINING_DIR) if
-                           (isfile(join(TRAINING_DIR, f)) and f[-23:] == 'behavior_sequence.txt')]
-    list_process_files = [f for f in listdir(TRAINING_DIR) if
-                          (isfile(join(TRAINING_DIR, f)) and f[-14:] == 'generation.txt')]
+    list_process_files = []
+    list_sequence_files = []
+    for f in listdir(TRAINING_DIR) :
+        if f[-21:] == 'behavior_sequence.txt' :
+            list_sequence_files.append(f)
+        if f[-14:] == 'generation.txt' :
+            list_process_files.append(f)
     file_labels = parse_label(f"{MAIN_DIR}/{LABEL_FILE_NAME}")
-    results = [(0,0,0)]* len(list_sequence_files)
-    for i in range(len(list_sequence_files)) :
-        results[i] = [(list_sequence_files[i], list_process_files[i], file_labels[i])]
+    results = []
+    for i in range(len(list_sequence_files)):
+        results.append((list_sequence_files[i], list_process_files[i], file_labels[i]))
     return results
 
-def parse_label(label_file) :
+def parse_label(label_file):
     with open(label_file) as infile:
         labels = []
-        for line in infile :
-            labels += [line]
+        for line in infile:
+            labels = list(line)
         return labels
 
 
@@ -44,5 +47,5 @@ def parse_sequences(sequence_file):
     with open(sequence_file) as infile:
         sequences_triplets = []
         for line in infile:
-            sequences_triplets += [line]
+            sequences_triplets += [[line.split()]]
         return sequences_triplets
