@@ -9,7 +9,7 @@ def forest_input(process_tree, source,behavior_sequence_forest):
     output+=[tree_node_number(process_tree)]
     output+=[tree_leaf_number(process_tree)]
     output+=[tree_max_children_number(process_tree)]
-    output+=[tree_max_depth(process_tree, source=source)]
+   # output+=[tree_max_depth(process_tree, source)]
 
     vector_size = 7
     max = np.zeros(vector_size)
