@@ -114,14 +114,14 @@ def api_diversity(graph):
     number_of_api_calls = nx.number_of_nodes(graph)
     if number_of_api_calls !=0 :
         set_apis = set()
-        for (rip,api) in graph.nodes : 
+        for (rip,api) in graph.nodes :
             set_apis.add(api)
         return len(set_apis)/number_of_api_calls,len(set_apis)
     else:
         return 0
 
     
-def rip_frequency(graph):
+def api_frequency(graph):
     """
     :param  graph: graph
     :return: vector of api frequency per api
